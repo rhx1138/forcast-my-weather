@@ -1,2 +1,2 @@
 # forecast-my-weather
-An basic API driven weather application
+A basic API driven weather application

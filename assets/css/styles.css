@@ -1,5 +1,37 @@
-.flex-wrap > .card {
-   display: flex;
+body {
+    margin: 0 auto;
+}
+
+
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    color: white;
+    background-color: rgb(31, 31, 177);
+    text-align: center;
+    padding: 5px;
+    margin-top: 0;
+
+}
+
+.dashboard-wrapper {
+    display: inline-flex;
+    flex-wrap: nowrap;
     flex-direction: row;
-    justify-content: space-between;
+    /* display: grid;
+    grid-auto-flow: column; */
+}
+
+/* will need breakpoint at 730px */
+.dashboard-column {
+    margin-left: 150px;
+    min-width: 730px;
+
+}
+
+.dashboard-top {
+    border: 3px solid lightgray;
+    padding: 5px;
+    /* width: 150px; */
+
 }

@@ -1,10 +1,16 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+
+
 body {
     margin: 0 auto;
 }
 
 
 .title {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 800;
     color: white;
     background-color: rgb(31, 31, 177);
@@ -13,6 +19,27 @@ body {
     margin-top: 0;
 
 }
+
+.search-column {
+    margin-left: 10px;
+}
+
+input {
+    width: 100%;
+    line-height: 27px;
+}
+
+button {
+    color: white;
+    background-color: rgb(45, 189, 236);
+    width: 100%;
+    border: none;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+
+
 
 .dashboard-wrapper {
     display: inline-flex;
@@ -24,7 +51,8 @@ body {
 
 /* will need breakpoint at 730px */
 .dashboard-column {
-    margin-left: 150px;
+    margin-left: 58px;
+    /* min width needed to push border right */
     min-width: 730px;
 
 }
@@ -37,7 +65,7 @@ body {
 }
 
 .card-container {
-    width: 600px;
+    width: 730px;
     height: 200px;
     /* height given for illustration */
     display: flex;

@@ -2,10 +2,13 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-    margin: 0 auto;
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
 }
-
 
 .title {
     font-weight: 800;
@@ -15,6 +18,7 @@ body {
     text-align: center;
     padding: 5px;
     margin-top: 0;
+    width: 100%;
 }
 
 .search-column {
@@ -37,8 +41,7 @@ button {
 }
 
 .dashboard-wrapper {
-    display: inline-flex;
-    flex-wrap: nowrap;
+    display: flex;
     flex-direction: row;
     /* display: grid;
     grid-auto-flow: column; */
@@ -47,7 +50,7 @@ button {
 /* min width needed to push border right wfbox */
 .dashboard-column {
     margin-left: 58px;
-    min-width: 730px;
+    /* min-width: 730px; */
 }
 
 .dashboard-top {
@@ -76,17 +79,19 @@ button {
     /* <-- adjusting for margin */
 }
 
-@media only screen and (max-width: 868px) {
+@media only screen and (max-width: 768px) {
     .dashboard-wrapper {
         display: flex;
-        flex-wrap: nowrap;
+        /* flex-wrap: nowrap; */
         flex-direction: column;
+        
     }
 
     .dashboard-column {
-        margin-left: 10px; 
-        /* min-width: 430px;   */
+        margin-left: 0;
+        /* min-width: 730px; */
     }
+
 
     .dashboard-top {
         margin-top: 46px;
@@ -94,20 +99,29 @@ button {
 
     .search-column {
         text-align: center;
-        width: 70%;
+        /* width: 70%; */
+    }
+
+    input {
+        width: 75%;
+    }
+
+    button {
+        width: 75%;
     }
 
     .card-container {
         display: flex;
         flex-direction: column;
-        /* position: relative; */
+        flex-wrap: nowrap;
     }
 
     .card {
         background: rgb(31, 31, 177);
-        /* flex: none;
-        height: 166px;
-        width: 150px; */
+        /* add scroll bar */
+        /* flex: none; */
+        /* no control with height */
+        width: 150px;
     }
 
 }

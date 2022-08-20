@@ -1,9 +1,6 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
 }
-
-
 
 body {
     margin: 0 auto;
@@ -14,14 +11,15 @@ body {
     font-weight: 800;
     color: white;
     background-color: rgb(31, 31, 177);
+    background-image: linear-gradient(to right,  rgb(31, 31, 177) , rgb(45, 185, 231));
     text-align: center;
     padding: 5px;
     margin-top: 0;
-
 }
 
 .search-column {
     margin-left: 10px;
+    min-width: 277px;
 }
 
 input {
@@ -38,9 +36,6 @@ button {
     padding: 5px;
 }
 
-
-
-
 .dashboard-wrapper {
     display: inline-flex;
     flex-wrap: nowrap;
@@ -49,12 +44,10 @@ button {
     grid-auto-flow: column; */
 }
 
-/* will need breakpoint at 730px */
+/* min width needed to push border right wfbox */
 .dashboard-column {
     margin-left: 58px;
-    /* min width needed to push border right */
     min-width: 730px;
-
 }
 
 .dashboard-top {
@@ -64,17 +57,57 @@ button {
 
 }
 
+.dashboard-top > P {
+    font-weight: bold;
+}
+
 .card-container {
     width: 730px;
     height: 200px;
-    /* height given for illustration */
     display: flex;
     flex-flow: row wrap;
     position: relative;
 }
 
 .card {
-    background:rgb(31, 31, 177);
+    background: rgb(31, 31, 177);
     margin: 4px;
-    flex: 0 1 calc(20% - 8px); /* <-- adjusting for margin */
+    flex: 0 1 calc(20% - 8px);
+    /* <-- adjusting for margin */
+}
+
+@media only screen and (max-width: 868px) {
+    .dashboard-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+    .dashboard-column {
+        margin-left: 10px; 
+        /* min-width: 430px;   */
+    }
+
+    .dashboard-top {
+        margin-top: 46px;
+    }
+
+    .search-column {
+        text-align: center;
+        width: 70%;
+    }
+
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        /* position: relative; */
+    }
+
+    .card {
+        background: rgb(31, 31, 177);
+        /* flex: none;
+        height: 166px;
+        width: 150px; */
+    }
+
 }

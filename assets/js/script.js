@@ -23,7 +23,10 @@ let weather = {
             speed
         } = data.wind;
         document.querySelector(".city").innerText = `Weather in ${name}`;
-        document.querySelector(".icon").src = `http://openweathermap.org/img/w/${icon}.png`
+        document.querySelector(".icon").src = `http://openweathermap.org/img/w/${icon}.png`;
+        document.querySelector(".temp").innerText = `${temp}°F`;
+        document.querySelector(".wind").innerText = `Wind speed: ${speed}mp/h`;
+        document.querySelector(".humidity").innerText = `Humidity: ${humidity}%`;
 
     }
 };

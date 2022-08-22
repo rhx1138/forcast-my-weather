@@ -1,20 +1,21 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Kanit', sans-serif;
 }
 
-html,body {
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 .title {
     font-weight: 800;
     color: white;
     background-color: rgb(31, 31, 177);
-    background-image: linear-gradient(to right,  rgb(31, 31, 177) , rgb(45, 185, 231));
+    background-image: linear-gradient(to right, rgb(31, 31, 177), rgb(45, 185, 231));
     text-align: center;
     padding: 5px;
     margin-top: 0;
@@ -60,7 +61,7 @@ button {
 
 }
 
-.dashboard-top > P {
+.dashboard-top>P {
     font-weight: bold;
 }
 
@@ -79,12 +80,17 @@ button {
     /* <-- adjusting for margin */
 }
 
+.icon {
+    width: 100px;
+    margin: -15px;
+}
+
 @media only screen and (max-width: 768px) {
     .dashboard-wrapper {
         display: flex;
         /* flex-wrap: nowrap; */
         flex-direction: column;
-        
+
     }
 
     .dashboard-column {

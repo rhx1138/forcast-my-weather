@@ -1,4 +1,3 @@
-// TODO: add city param to html
 
 let weather = {
     apiKey: "1b913796ee84a17f196943d065f7b698",
@@ -24,6 +23,7 @@ let weather = {
             speed
         } = data.wind;
         document.querySelector(".city").innerText = `Weather in ${name}`;
+        document.querySelector(".icon").src = `http://openweathermap.org/img/w/${icon}.png`
 
     }
 };

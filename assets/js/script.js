@@ -1,4 +1,15 @@
-
+let currentDay = new Date();
+let cityFormEl = document.querySelector("#city-form");
+let cityNameInputEl = document.querySelector("#cityname");
+let currentWeatherEl = document.querySelector('#current-weather');
+let currentWeatherCardEl = document.querySelector("#current-weather-card");
+let fiveDayCardEl = document.querySelector("#five-day-card");
+let fiveDayEl = document.querySelector("#five-day-body");
+let weatherStatusEl = document.querySelector('#weather-status');
+let searchEl = document.querySelector('#search');
+let historyButtonsEl = document.querySelector("#history-buttons");
+let historyCardEl = document.querySelector("#history");
+let searchHistoryArray = [];
 
 
 

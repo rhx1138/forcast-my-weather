@@ -17,70 +17,53 @@
 
   <h1 class="title">Weather Dashboard</h1>
 
-  <div class="dashboard-wrapper">
-    <!-- begin of search column -->
-    <div class="search-column">
-      <h2>Search for a City:</h2>
-      <input id="search" type="text" placeholder="Los Angeles">
-      <button>Search</button>
-    </div>
-    <!-- end of search column -->
-    <!-- begin dashboard column -->
-    <div class="dashboard-column">
-      <!-- begin of dashboard top -->
-      <div class="dashboard-top">
-        <h1 class="city"></h1>
-        <img src="" class="icon">
-        <div class="temp dashboard-text"></div>
-        <div class="wind dashboard-text"></div>
-        <div class="humidity dashboard-text"></div>
-        <div class="uv dashboard-text"></div>
+  <main class="flex-row justify-space-between">
+    <div class="flex-row justify-space-between col-12">
+      <div class="col-12 col-md-4">
+
+        <div class="card">
+          <h3 class="header" style="color: white;">Search By City</h3>
+          <form id="city-form" class="card-body" style="color: white ;">
+            <label class="form-lable" for="cityname">City Name</label>
+            <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">Get Weather</button>
+          </form>
+        </div>
+
+
       </div>
-      <!-- begin of dashboard bottom -->
-      <div class="dashboard-bottom">
-        <h1>5-Day Forecast:</h1>
-        <div class="card-container">
-          <div class="card">
-            <div class="date"></div>
-            <img src="" class="icon">
-            <div class="temp"></div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="card">
-            <div class="date"></div>
-            <img src="" class="icon">
-            <div class="temp"></div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="card">
-            <div class="date"></div>
-            <img src="" class="icon">
-            <div class="temp"></div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="card">
-            <div class="date"></div>
-            <img src="" class="icon">
-            <div class="temp"></div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
-          </div>
-          <div class="card">
-            <div class="date"></div>
-            <img src="" class="icon">
-            <div class="temp"></div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
+
+      <div class="col-12 col-md-8">
+        <div class="card hidden" id="current-weather-card">
+          <h2 class="card-header" id="weather-status"></h2>
+          <div class="card-body" id="current-weather">
+
           </div>
         </div>
       </div>
-      <!-- end dashboard bottom -->
     </div>
-    <!-- end dashboard column -->
-  </div>
+
+    <div class="flex-row justify-space-between col-12">
+      <div class="col-12 col-md-4" id="search">
+        <div class="card" id="history" style="display: none;">
+          <h3 class="card-header text-uppercase">Search History</h3>
+          <div class="card-body" id="history-buttons">
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8">
+        <div class="card hidden" id="five-day-card">
+          <h2 class="card-header" id="five-day-head">5-Day Forecast</h2>
+          <div class="card-body flex-row justify-space-around" id="five-day-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"

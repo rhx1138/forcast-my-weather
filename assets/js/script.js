@@ -12,6 +12,30 @@ let historyCardEl = document.querySelector("#history");
 let searchHistoryArray = [];
 
 
+let formSubmitHandler = function (event) {
+    event.preventDefault();
+    // get city name value from input element
+    let cityname = cityNameInputEl.value.trim();
+
+    // Save city name in local storage and create history buttons 
+    if (cityname) {
+        searchHistoryArray.push(cityname);
+        localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
+        let searchHistoryEl = document.createElement('button');
+        searchHistoryEl.className = "btn";
+        searchHistoryEl.setAttribute("data-city", cityname)
+        searchHistoryEl.innerHTML = cityname;
+        historyButtonsEl.appendChild(searchHistoryEl);
+        historyCardEl.removeAttribute("style")
+        getWeatherInfo(cityname);
+        cityNameInputEl.value = "";
+    }
+    else {
+        alert("Enter a city");
+    }
+
+}
+
 // Get weather information from OpenWeather
 let getWeatherInfo = function (cityname) {
     let apiCityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=imperial&appid=1b913796ee84a17f196943d065f7b698`;
@@ -96,6 +120,11 @@ let displayWeather = function (weather) {
   
 
 }
+
+
+
+
+cityFormEl.addEventListener("submit", formSubmitHandler);
 
 
 

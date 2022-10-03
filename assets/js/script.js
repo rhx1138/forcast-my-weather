@@ -12,56 +12,90 @@ let historyCardEl = document.querySelector("#history");
 let searchHistoryArray = [];
 
 
+// Get weather information from OpenWeather
+let getWeatherInfo = function (cityname) {
+    let apiCityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=imperial&appid=1b913796ee84a17f196943d065f7b698`;
+    fetch(
+       
+        apiCityUrl
+    )
+        .then(function (cityResponse) {
+            return cityResponse.json();
+        })
+        .then(function (cityResponse) {
+            console.log(cityResponse)
+            let latitude = cityResponse.coord.lat;
+            let longitude = cityResponse.coord.lon;
+
+            // City name, current date and icon information for current Weather heading
+            let city = cityResponse.name;
+            let date = (currentDay.getMonth() + 1) + '/' + currentDay.getDate() + '/' + currentDay.getFullYear();
+            let weatherIcon = cityResponse.weather[0].icon;
+            let weatherDescription = cityResponse.weather[0].description;
+            let weatherIconLink = `<img src='http://openweathermap.org/img/wn/${weatherIcon}@2x.png${weatherDescription}'/>`
+
+            // Empty Current Weather element for new data
+            currentWeatherEl.textContent = "";
+            fiveDayEl.textContent = "";
+
+          
+            weatherStatusEl.innerHTML = city + " (" + date + ") " + weatherIconLink;
+
+            
+            currentWeatherCardEl.classList.remove("hidden");
+            fiveDayCardEl.classList.remove("hidden");
+
+            // Return a fetch request to the OpenWeather 
+            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts,minutely,hourly&units=imperial&appid=1b913796ee84a17f196943d065f7b698`);
+        })
+        .then(function (response) {
+            // return response in json format
+            return response.json();
+        })
+        .then(function (response) {
+            console.log(response);
+            // send response data to displayWeather function for final display 
+            displayWeather(response);
+
+        });
+};
+
+// Display the weather on page
+let displayWeather = function (weather) {
+    // check if api returned any weather data
+    if (weather.length === 0) {
+        weatherContainerEl.textContent = "No data found.";
+        return;
+    }
+    // Create Temperature element
+    let temperature = document.createElement('p');
+    temperature.id = "temperature";
+    temperature.innerHTML = "<strong>Temperature:</strong> " + weather.current.temp.toFixed(1) + "°F";
+    currentWeatherEl.appendChild(temperature);
+
+    // Create Humidity element
+    let humidity = document.createElement('p');
+    humidity.id = "humidity";
+    humidity.innerHTML = "<strong>Humidity:</strong> " + weather.current.humidity + "%";
+    currentWeatherEl.appendChild(humidity);
+
+    // Create Wind Speed element
+    let windSpeed = document.createElement('p');
+    windSpeed.id = "wind-speed";
+    windSpeed.innerHTML = "<strong>Wind Speed:</strong> " + weather.current.wind_speed.toFixed(1) + " MPH";
+    currentWeatherEl.appendChild(windSpeed);
+
+    // Create uv-index element
+    let uvIndex = document.createElement('p');
+    let uvIndexValue = weather.current.uvi.toFixed(1);
+    uvIndex.id = "uv-index";
+    uvIndex.innerHTML = "<strong>UV Index:</strong> <span>" + uvIndexValue + "</span>";
+    currentWeatherEl.appendChild(uvIndex);
+
+    // still need extended forecast data
+  
+
+}
 
 
 
-// let weather = {
-//     apiKey: "1b913796ee84a17f196943d065f7b698",
-//     fetchWeather: function (city) {
-//         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${this.apiKey}`)
-//             .then((response) => response.json())
-//             .then((data) => this.displayWeather(data));
-
-//     },
-//     displayWeather: function (data) {
-//         const {
-//             name
-//         } = data;
-//         const {
-//             icon
-//         } = data.weather[0];
-//         const {
-//             temp,
-//             humidity
-//         } = data.main;
-//         const {
-//             speed
-//         } = data.wind;
-//         const {
-//             lat,
-//             lon
-//         } = data.coord;
-                     
-//         document.querySelector(".icon").src = `http://openweathermap.org/img/w/${icon}.png`;
-//         document.querySelector(".city").innerText = `Weather in ${name}`;
-//         document.querySelector(".temp").innerText = `${temp}°F`;
-//         document.querySelector(".wind").innerText = `Wind speed: ${speed}mp/h`;
-//         document.querySelector(".humidity").innerText = `Humidity: ${humidity}%`;
-//         document.querySelector(".uv").innerText = `UV index: ${lon}%`;
-
-//         latitude = lat;
-//         longitude = lon;
-        
-
-//     }
-// };
-
-
-
-
-// should create a func to now take lat lon from city to the lat lon below
-// https://api.openweathermap.org/data/2.5/onecall?lat=41.85&lon=-87.65&limit=5&appid=1b913796ee84a17f196943d065f7b698&units=imperial
-
-
-// api call for 5 day weather forecast
-// api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}

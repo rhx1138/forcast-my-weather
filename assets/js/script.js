@@ -1,4 +1,5 @@
 let searchEl = document.getElementById("search");
+let cardContainerEl = document.getElementById("card-container");
 
 let weather = {
     apiKey: "1b913796ee84a17f196943d065f7b698",
@@ -47,6 +48,7 @@ function displayFiveDay(data) {
         .then((fiveDayData) => fiveDayData.json().then((data1) => {
             let days = data1.daily.slice(1,6);
             console.log(days);
+            cardContainerEl.textContent = "";
             for (let i = 0; i < days.length; i++) {
                 let dateString = formatUnixTimeStamp(days[i].dt);
                 console.log(dateString);
@@ -55,13 +57,40 @@ function displayFiveDay(data) {
                 let getHumidity = days[i].humidity;
                 let wind = days[i].wind_speed;
                 console.log(wind);
+
+                let icon = `https://openweathermap.org/img/w/${days[i].weather[0].icon}.png`
+                console.log(icon);
+                
+
+                let cardDiv = document.createElement('div');
+                cardDiv.setAttribute('class', 'card');
+                
+                let iconDisplay = document.createElement('img');
+                iconDisplay.setAttribute('src', `https://openweathermap.org/img/w/${days[i].weather[0].icon}.png`);
+
+                
+                let dateDisplay = document.createElement('p');
+                dateDisplay.setAttribute('class', 'date');
+                dateDisplay.textContent = dateString;
+                
+                let tempDisplay = document.createElement('p');
+                tempDisplay.setAttribute('class', 'temp');
+                tempDisplay.textContent = `Temp: ${getTemp}° F`;
+
+                let humidityDisplay = document.createElement('p');
+                humidityDisplay.setAttribute('class', 'humidity');
+                humidityDisplay.textContent = `Humidity: ${getHumidity}`;
+
+                let windSpeedDisplay = document.createElement('p');
+                windSpeedDisplay.setAttribute('class', 'wind');
+                windSpeedDisplay.textContent = `Wind Speed: ${wind} MPH`
+
+                cardDiv.append(dateDisplay, tempDisplay, humidityDisplay, windSpeedDisplay, iconDisplay);
+                cardContainerEl.append(cardDiv);
             }
         })) 
         
 }
-
-
-
 
 function getWeather() {
     let searchInput = searchEl.value

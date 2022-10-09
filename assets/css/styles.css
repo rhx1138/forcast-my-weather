@@ -11,6 +11,9 @@ body {
     overflow-x: hidden;
 }
 
+p {
+    color: white;
+}
 .title {
     font-weight: 800;
     color: white;

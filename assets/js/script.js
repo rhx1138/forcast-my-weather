@@ -33,13 +33,34 @@ let weather = {
     
 };
 
+function formatUnixTimeStamp(unixTime) {
+const date = new Date (unixTime * 1000)
+return date.toLocaleDateString("en-US")
+}
+
+
 function displayFiveDay(data) {
    // console.log(data);
     let lat = data.coord.lat;
     let lon = data.coord.lon;
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=1b913796ee84a17f196943d065f7b698`)
-        .then((fiveDayData) => fiveDayData.json().then((data1) => console.log(data1))) 
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&limit=5&appid=1b913796ee84a17f196943d065f7b698&units=imperial`)
+        .then((fiveDayData) => fiveDayData.json().then((data1) => {
+            let days = data1.daily.slice(1,6);
+            console.log(days);
+            for (let i = 0; i < days.length; i++) {
+                let dateString = formatUnixTimeStamp(days[i].dt);
+                console.log(dateString);
+                let getTemp = days[i].temp.day;
+                console.log(getTemp);
+                let getHumidity = days[i].humidity;
+                let wind = days[i].wind_speed;
+                console.log(wind);
+            }
+        })) 
+        
 }
+
+
 
 
 function getWeather() {

@@ -13,6 +13,8 @@ body {
 
 p {
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
 }
 .title {
     font-weight: 800;
@@ -37,7 +39,9 @@ input {
 
 button {
     color: white;
-    background-color: rgb(45, 189, 236);
+    background-color: rgb(35, 71, 191);
+   
+    /* background-color: rgb(45, 189, 236); */
     width: 100%;
     border: none;
     margin-top: 10px;
@@ -77,9 +81,11 @@ button {
 }
 
 .card {
-    background: rgb(31, 31, 177);
+    /* background: rgb(31, 31, 177); */
+    background: rgb(35, 71, 191);
     margin: 4px;
     flex: 0 1 calc(20% - 8px);
+    padding: 5px;
     /* <-- adjusting for margin */
 }
 

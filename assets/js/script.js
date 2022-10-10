@@ -83,13 +83,30 @@ function displayFiveDay(data) {
 
                 let windSpeedDisplay = document.createElement('p');
                 windSpeedDisplay.setAttribute('class', 'wind');
-                windSpeedDisplay.textContent = `Wind Speed: ${wind} MPH`
+                windSpeedDisplay.textContent = `Wind: ${wind} MPH`
 
                 cardDiv.append(dateDisplay, tempDisplay, humidityDisplay, windSpeedDisplay, iconDisplay);
                 cardContainerEl.append(cardDiv);
             }
         })) 
         
+}
+
+ // Save city name in local storage and create history buttons 
+ if (cityname) {
+    searchHistoryArray.push(cityname);
+    localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
+    let searchHistoryEl = document.createElement('button');
+    searchHistoryEl.className = "btn";
+    searchHistoryEl.setAttribute("data-city", cityname)
+    searchHistoryEl.innerHTML = cityname;
+    historyButtonsEl.appendChild(searchHistoryEl);
+    historyCardEl.removeAttribute("style")
+    getWeatherInfo(cityname);
+    cityNameInputEl.value = "";
+}
+else {
+    alert("Enter a city");
 }
 
 function getWeather() {

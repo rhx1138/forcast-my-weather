@@ -24,6 +24,8 @@ let weather = {
         const {
             speed
         } = data.wind;
+        saveCity(name)
+        displayCitiesFromStorage()
         document.querySelector(".city").innerText = `Weather in ${name}`;
         document.querySelector(".icon").src = `http://openweathermap.org/img/w/${icon}.png`;
         document.querySelector(".temp").innerText = `${temp}°F`;
@@ -92,22 +94,31 @@ function displayFiveDay(data) {
         
 }
 
- // Save city name in local storage and create history buttons 
- if (cityname) {
-    searchHistoryArray.push(cityname);
-    localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
-    let searchHistoryEl = document.createElement('button');
-    searchHistoryEl.className = "btn";
-    searchHistoryEl.setAttribute("data-city", cityname)
-    searchHistoryEl.innerHTML = cityname;
-    historyButtonsEl.appendChild(searchHistoryEl);
-    historyCardEl.removeAttribute("style")
-    getWeatherInfo(cityname);
-    cityNameInputEl.value = "";
+
+function saveCity (city) {
+    let citiesFromStorage = localStorage.getItem('cities') ? JSON.parse(localStorage.getItem('cities')) : [];
+    if (!citiesFromStorage.includes(city)) {
+        citiesFromStorage.push(city)
+    }
+
+    localStorage.setItem('cities', JSON.stringify(citiesFromStorage));
+
 }
-else {
-    alert("Enter a city");
+
+function displayCitiesFromStorage () {
+    let citiesFromStorage = localStorage.getItem('cities') ? JSON.parse(localStorage.getItem('cities')) : [];
+    let historyDiv = document.getElementById('history');
+    historyDiv.innerHTML = "";
+    for (let i = 0; i < citiesFromStorage.length; i++) {
+        let historyButton = document.createElement('button');
+        historyButton.textContent = citiesFromStorage[i];
+        historyButton.addEventListener('click', function(){
+            weather.fetchWeather(citiesFromStorage[i])
+        }) 
+        historyDiv.append(historyButton);
+    }
 }
+
 
 function getWeather() {
     let searchInput = searchEl.value
@@ -115,6 +126,7 @@ function getWeather() {
     weather.fetchWeather(searchInput);
 }
 
+displayCitiesFromStorage();
 
 // api call for 5 day weather forecast
 // api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}

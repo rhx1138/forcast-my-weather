@@ -1,6 +1,7 @@
 let searchEl = document.getElementById("search");
 let cardContainerEl = document.getElementById("card-container");
 
+// fetches weather data from openweathermap
 let weather = {
     apiKey: "1b913796ee84a17f196943d065f7b698",
     fetchWeather: function (city) {
@@ -36,12 +37,13 @@ let weather = {
     
 };
 
+// formats the time
 function formatUnixTimeStamp(unixTime) {
 const date = new Date (unixTime * 1000)
 return date.toLocaleDateString("en-US")
 }
 
-
+// desplays the five day forcast to the dashboard
 function displayFiveDay(data) {
    // console.log(data);
     let lat = data.coord.lat;
@@ -94,7 +96,7 @@ function displayFiveDay(data) {
         
 }
 
-
+// saves the cities searched to local storage
 function saveCity (city) {
     let citiesFromStorage = localStorage.getItem('cities') ? JSON.parse(localStorage.getItem('cities')) : [];
     if (!citiesFromStorage.includes(city)) {
@@ -105,6 +107,7 @@ function saveCity (city) {
 
 }
 
+// displays the cities previously searched below the searchbar 
 function displayCitiesFromStorage () {
     let citiesFromStorage = localStorage.getItem('cities') ? JSON.parse(localStorage.getItem('cities')) : [];
     let historyDiv = document.getElementById('history');
@@ -120,6 +123,7 @@ function displayCitiesFromStorage () {
 }
 
 
+// search button click event calls the fetchWeather function
 function getWeather() {
     let searchInput = searchEl.value
     // console.log(searchInput);
@@ -127,6 +131,3 @@ function getWeather() {
 }
 
 displayCitiesFromStorage();
-
-// api call for 5 day weather forecast
-// api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}

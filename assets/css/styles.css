@@ -37,16 +37,25 @@ input {
     line-height: 27px;
 }
 
+
 button {
     color: white;
-    background-color: rgb(35, 71, 191);
-   
-    /* background-color: rgb(45, 189, 236); */
+    
     width: 100%;
     border: none;
     margin-top: 10px;
     padding: 5px;
 }
+
+#searchBtn {
+   background-color: rgb(45 161 236);
+}
+
+#saved-btn {
+    background-color: rgb(35, 71, 191);
+}
+
+
 
 .dashboard-wrapper {
     display: flex;
@@ -110,6 +119,13 @@ button {
 
     .dashboard-top {
         margin-top: 46px;
+        text-align: center;
+    }
+
+    .dashboard-bottom {
+        display: flex;
+        flex-direction: column;
+    align-items: center;
     }
 
     .search-column {
@@ -126,9 +142,10 @@ button {
     }
 
     .card-container {
-        display: flex;
+        
         flex-direction: column;
         flex-wrap: nowrap;
+        align-items: center;
     }
 
     .card {

@@ -114,6 +114,7 @@ function displayCitiesFromStorage () {
     historyDiv.innerHTML = "";
     for (let i = 0; i < citiesFromStorage.length; i++) {
         let historyButton = document.createElement('button');
+        historyButton.setAttribute("id", "saved-btn");
         historyButton.textContent = citiesFromStorage[i];
         historyButton.addEventListener('click', function(){
             weather.fetchWeather(citiesFromStorage[i])
